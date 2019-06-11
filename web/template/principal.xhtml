@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>Facelets Template</title>
+        <style type="text/css">
+            .ui-diagram-element {   
+                width:3em; 
+                height:3em;
+                line-height:3em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 5em;
+                border: 1px solid #404a4e;
+                background-color: #404a4e;
+                color: #cccccc;
+            }
+            
+            .ui-diagram-element-ficha {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: red;
+                color: #cccccc;
+            }
+
+            .ui-diagram-element-ficha-negra {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: #20282b;
+                color: #cccccc;
+            }
+
+            .ui-diagram-element-ficha-azul {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: blue;
+                color: #cccccc;
+            }
+
+            .ui-diagram-element:hover {
+                background-color: #20282b;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        
+        <div id="top" class="top" >
+            <h:graphicImage url="/resources/imagenes/4enlinea.png" width="17%"/>
+        </div>
+        <div>
+            <div id="left" class="left">
+                <h:form>
+                    <p:commandButton value="Tablero" ajax="false" action="tablero" />
+                </h:form>
+                    
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Bienvenido al Juego 4 en Linea, elija las opciones a su izquierda</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

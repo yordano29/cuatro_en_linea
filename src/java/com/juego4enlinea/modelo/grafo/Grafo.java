@@ -51,5 +51,21 @@ public class Grafo implements Serializable{
         aristas.add(new Arista(origen, destino, peso));
         
     }
+    
+    public List<Vertice> obtenerVerticesxTablero(String tablero)
+    {
+        List<Vertice> lista= new ArrayList<>();
+        for(Vertice vert: vertices)
+        {
+            if(vert.getFicha().getTablero().compareTo(tablero)==0)
+            {
+                lista.add(vert);
+            }
+        }
+        
+        return lista;
+    }
+    
+    
 }
   

@@ -27,54 +27,63 @@ import org.primefaces.model.diagram.endpoint.DotEndPoint;
 import org.primefaces.model.diagram.endpoint.EndPoint;
 import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 
-
 /**
  *
  * @author yordano
  */
 @Named(value = "tablero")
 @ApplicationScoped
-public class Tablero implements Serializable{
-    
-    private int ancho=7;
-    private int alto = ancho -1;
+public class Tablero implements Serializable {
+
+    private int ancho = 7;
+    private int alto = ancho - 1;
     private int total = ancho * alto;
     private DefaultDiagramModel model;
     private Grafo tablero = new Grafo();
     private byte numeroJugadores = 4;
     private Jugador jugadorSeleccionado;
-    
+    private int tiempoTurno = 0;
+
     private List<Jugador> jugadores = new ArrayList<Jugador>();
+
     /**
      * Creates a new instance of Tablero
      */
     public Tablero() {
     }
+
     @PostConstruct
     public void pintarTablero() {
 
+        //llenarVertices();
         model = new DefaultDiagramModel();
         model.setMaxConnections(-1);
         model.setConnectionsDetachable(false);
-        int x = 18;
-        int y = 5;
-        String color = "Negra";
-        String styleColor = "ui-diagram-element-ficha-negra";
-        for (int i = 1; i <= alto; i++ ) {
-            for (int j = 1 ; j <= ancho ; j++) {
-                tablero.adicionarVertice(new Ficha(color));
-                Element ceo = new Element(tablero.getVertices().size(), x + "em", y + "em");
-                ceo.setDraggable(false);
-                ceo.setStyleClass(styleColor);
-                ceo.addEndPoint(new BlankEndPoint(EndPointAnchor.CENTER));
-                model.addElement(ceo);
-                x = x + 5;
+
+        int iniX = 2;
+        for (int cont = 0; cont < 6; cont++) {
+
+            int x = iniX;
+            int y = 5;
+            String color = "Negra";
+            String styleColor = "ui-diagram-element-ficha-negra";
+            for (int i = 1; i <= alto; i++) {
+                for (int j = 1; j <= ancho; j++) {
+                    tablero.adicionarVertice(new Ficha(color, "T" + (cont + 1)));
+                    Element ceo = new Element(tablero.getVertices().size(), x + "em", y + "em");
+                    ceo.setDraggable(false);
+                    ceo.setStyleClass(styleColor);
+                    ceo.addEndPoint(new BlankEndPoint(EndPointAnchor.CENTER));
+                    model.addElement(ceo);
+                    x = x + 5;
+                }
+                y = y + 5;
+                x = iniX;
             }
-            y = y + 5;
-            x = 18;
+            iniX = iniX + 40;
         }
-       llenarAristas();
-       StraightConnector connector = new StraightConnector();
+        llenarAristas();
+        StraightConnector connector = new StraightConnector();
         connector.setPaintStyle("{strokeStyle:'#404a4e', lineWidth:1}");
         connector.setHoverPaintStyle("{strokeStyle:'#20282b'}");
         model.setDefaultConnector(connector);
@@ -86,32 +95,42 @@ public class Tablero implements Serializable{
             model.connect(new Connection(origen.getEndPoints().get(0), destino.getEndPoints().get(0)));
         }
     }
-     
+
     private EndPoint createEndPoint(EndPointAnchor anchor) {
         DotEndPoint endPoint = new DotEndPoint(anchor);
         endPoint.setStyle("{fillStyle:'#404a4e'}");
-        endPoint.setHoverStyle("{fillStyle:'#20282b'}");         
+        endPoint.setHoverStyle("{fillStyle:'#20282b'}");
         return endPoint;
     }
-    
-    public void llenarAristas() {        
-        //Crear aristas        
-        for (Vertice vert : tablero.getVertices()) {
-            if(vert.getCodigo() % ancho != 0){
-                tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + 1, 0);
+
+   
+
+    public void llenarAristas() {
+        //Crear aristas  
+        for (int i = 1; i <= 6; i++) {
+            for (Vertice vert : tablero.obtenerVerticesxTablero("T"+i)) {
+                if (vert.getCodigo() % ancho != 0) {
+                    tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + 1, 0);
+                }
+                if (vert.getCodigo() + ancho <= (total*i)) {
+                    tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + ancho, 0);
+
+                    if (vert.getCodigo() % ancho != 0) {
+                        tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + ancho + 1, 0);
+                        tablero.adicionarArista(vert.getCodigo() + 1, vert.getCodigo() + ancho, 0);
+                    }
+                }
             }
-            if(vert.getCodigo() + ancho <= total){                    
-                tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + ancho, 0);                                
-                        
-            if(vert.getCodigo() % ancho != 0 ){
-                tablero.adicionarArista(vert.getCodigo(), vert.getCodigo() + ancho + 1, 0);
-                tablero.adicionarArista(vert.getCodigo() + 1, vert.getCodigo() + ancho, 0);
-            }
-            }           
         }
     }
-  
-    
+
+    public int getTiempoTurno() {
+        return tiempoTurno;
+    }
+
+    public void setTiempoTurno(int tiempoTurno) {
+        this.tiempoTurno = tiempoTurno;
+    }
 
     public int getAncho() {
         return ancho;
@@ -169,53 +188,35 @@ public class Tablero implements Serializable{
         this.jugadorSeleccionado = jugadorSeleccionado;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public void simularJugada(int num, Usuario usuario)
-    {
-       JsfUtil.addSuccessMessage("Jugó "+usuario.getNombre());
-        
-        if(tablero.getVertices().get(num -1).getFicha().getColor().compareTo("Negra")==0){
-            int aux=0;
-            for (int i = num; i <= total; i = i+ancho) {
-                if(tablero.getVertices().get(i -1).getFicha().getColor().compareTo("Negra")==0){
+    public void simularJugada(int num, Usuario usuario) {
+        JsfUtil.addSuccessMessage("Jugó " + usuario.getNombre());
+
+        if (tablero.getVertices().get(num - 1).getFicha().getColor().compareTo("Negra") == 0) {
+            int aux = 0;
+            for (int i = num; i <= total; i = i + ancho) {
+                if (tablero.getVertices().get(i - 1).getFicha().getColor().compareTo("Negra") == 0) {
                     aux = i;
                 }
             }
-            Element elem1=model.getElements().get(aux -1);       
+            Element elem1 = model.getElements().get(aux - 1);
             elem1.setStyleClass("ui-diagram-element-ficha");
-            tablero.getVertices().get(aux -1).getFicha().setColor("Azul");  
-        }
-        else{
+            tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
+        } else {
             //System.out.println("columna "+ num + " llena" +", haga otra jugada");
-            JsfUtil.addErrorMessage("columna "+ num + " llena" +", haga otra jugada");
+            JsfUtil.addErrorMessage("columna " + num + " llena" + ", haga otra jugada");
         }
-        
+
     }
-    
-    public void adicionarJugador(Usuario usuario, String color, int tiempo){
-        Jugador jugador = new Jugador();
-        jugador.setUsuario(usuario);
-        jugador.setColor(color);
-        jugador.setTiempo(tiempo);
-        jugadores.add(jugador);
+
+    public void adicionarJugador() {
+        jugadores.add(jugadorSeleccionado);
+        jugadorSeleccionado = new Jugador();
     }
-    
-    public void seleccionarJugador(Usuario usuario, int tiempo){
+
+    public void seleccionarJugador(Usuario usuario) {
         jugadorSeleccionado = new Jugador();
         jugadorSeleccionado.setUsuario(usuario);
+        jugadorSeleccionado.setTiempo(tiempoTurno);
     }
-    
-    
+
 }

@@ -24,6 +24,7 @@
 
 
                     </p:panelGrid>
+                    <p:commandButton value="Seleccionar" action="#{tablero.adicionarJugador()}" ajax="false" oncomplete="JugadorViewDialog.hide()" update="@all"/>
                     <p:commandButton value="#{bundle.Close}" onclick="JugadorViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

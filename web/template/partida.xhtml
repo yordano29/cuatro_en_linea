@@ -41,7 +41,8 @@
                         <f:facet name="header">
                             <h:outputText value="Seleccionar"/>
                         </f:facet>
-                        <p:commandButton value="Seleccionar" action="#{tablero.seleccionarJugador(item, 20)}"  update=":JugadorViewForm" oncomplete="PF('JugadorDialog').show()"/>
+                        <p:commandButton value="Seleccionar" 
+                                         action="#{tablero.seleccionarJugador(item, 20)}"  update=":JugadorViewForm" oncomplete="PF('JugadorViewDialog').show()"/>
                     </p:column>
 
                 </p:dataTable>

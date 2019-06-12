@@ -13,19 +13,15 @@
             
             <c:forEach var = "i" begin = "1" end = "#{tablero.ancho}">
 
-                    <p:commandButton value="#{i}" action="#{tablero.simularJugada(i)}" update="@all" ajax="false"/>
+                    <p:commandButton value="#{i}" action="#{tablero.simularJugada(i,controladorJuego4linea.usuario)}" update="@all" ajax="false"/>
 
             </c:forEach>
         </h:form>
         
         <h:panelGroup layout="block" style="overflow: auto; width: 100%; height: 600px;" >
-            <center>
               
             <p:diagram value="#{tablero.model}" style="height:600px" styleClass="ui-widget-content" />
-            
-            </center>
-            
-            
+         
         </h:panelGroup>
         <h:form>
             

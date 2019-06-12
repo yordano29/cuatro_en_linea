@@ -67,19 +67,24 @@
     </h:head>
 
     <h:body>
-        
+        <p:growl id="grwlTablero"/>
         <div id="top" class="top" >
             <h:graphicImage url="/resources/imagenes/4enlinea.png" width="17%"/>
         </div>
         <div>
             <div id="left" class="left">
                 <h:form>
+                    <h:panelGrid>
+                    <p:commandButton value="Crear"  />
+                    <p:commandButton value="Partida" ajax="false" action="partida"  />
                     <p:commandButton value="Tablero" ajax="false" action="tablero" />
+                    </h:panelGrid>
                 </h:form>
                     
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Bienvenido al Juego 4 en Linea, elija las opciones a su izquierda</ui:insert>
+                <p:outputLabel value="#{controladorJuego4linea.usuario.nombre}" />
             </div>
         </div>
     </h:body>

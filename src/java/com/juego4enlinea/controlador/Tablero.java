@@ -6,11 +6,15 @@
 package com.juego4enlinea.controlador;
 
 import com.juego4enlinea.controlador.util.JsfUtil;
+import com.juego4enlinea.modelo.Jugador;
+import com.juego4enlinea.modelo.Usuario;
 import com.juego4enlinea.modelo.grafo.Arista;
 import com.juego4enlinea.modelo.grafo.Ficha;
 import com.juego4enlinea.modelo.grafo.Grafo;
 import com.juego4enlinea.modelo.grafo.Vertice;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
@@ -37,7 +41,10 @@ public class Tablero implements Serializable{
     private int total = ancho * alto;
     private DefaultDiagramModel model;
     private Grafo tablero = new Grafo();
-
+    private byte numeroJugadores = 4;
+    private Jugador jugadorSeleccionado;
+    
+    private List<Jugador> jugadores = new ArrayList<Jugador>();
     /**
      * Creates a new instance of Tablero
      */
@@ -130,8 +137,6 @@ public class Tablero implements Serializable{
         this.total = total;
     }
 
-    
-
     public DefaultDiagramModel getModel() {
         return model;
     }
@@ -139,9 +144,48 @@ public class Tablero implements Serializable{
     public void setModel(DefaultDiagramModel model) {
         this.model = model;
     }
+
+    public byte getNumeroJugadores() {
+        return numeroJugadores;
+    }
+
+    public void setNumeroJugadores(byte numeroJugadores) {
+        this.numeroJugadores = numeroJugadores;
+    }
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public Jugador getJugadorSeleccionado() {
+        return jugadorSeleccionado;
+    }
+
+    public void setJugadorSeleccionado(Jugador jugadorSeleccionado) {
+        this.jugadorSeleccionado = jugadorSeleccionado;
+    }
+
     
-    public void simularJugada(int num)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void simularJugada(int num, Usuario usuario)
     {
+       JsfUtil.addSuccessMessage("Jugó "+usuario.getNombre());
+        
         if(tablero.getVertices().get(num -1).getFicha().getColor().compareTo("Negra")==0){
             int aux=0;
             for (int i = num; i <= total; i = i+ancho) {
@@ -154,37 +198,24 @@ public class Tablero implements Serializable{
             tablero.getVertices().get(aux -1).getFicha().setColor("Azul");  
         }
         else{
-            System.out.println("columna "+ num + " llena" +", haga otra jugada");
+            //System.out.println("columna "+ num + " llena" +", haga otra jugada");
+            JsfUtil.addErrorMessage("columna "+ num + " llena" +", haga otra jugada");
         }
         
     }
     
+    public void adicionarJugador(Usuario usuario, String color, int tiempo){
+        Jugador jugador = new Jugador();
+        jugador.setUsuario(usuario);
+        jugador.setColor(color);
+        jugador.setTiempo(tiempo);
+        jugadores.add(jugador);
+    }
+    
+    public void seleccionarJugador(Usuario usuario, int tiempo){
+        jugadorSeleccionado = new Jugador();
+        jugadorSeleccionado.setUsuario(usuario);
+    }
+    
     
 }
-
-
-/*else{
-                Element elem1=model.getElements().get(aux-1);       
-                elem1.setStyleClass("ui-diagram-element-ficha-azul");
-                tablero.getVertices().get(aux-1).getFicha().setColor("Azul");
-                
-            }*/
-        
-        /*
-        
-        if(tablero.getVertices().get(num -1).getFicha().getColor().compareTo("Negra")==0){
-            
-        Element elem1=model.getElements().get(num -1);       
-        elem1.setStyleClass("ui-diagram-element-ficha-azul");
-        tablero.getVertices().get(num -1).getFicha().setColor("Azul");
-            
-        }else{
-            Element elem1=model.getElements().get(11 -1);       
-            elem1.setStyleClass("ui-diagram-element-ficha-azul");
-            tablero.getVertices().get(11 -1).getFicha().setColor("Azul");
-        }
-        
-        
-        for (int i = 0; i < 10; i++) {
-            
-        }*/

@@ -47,8 +47,14 @@ public class LoginBean implements Serializable{
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarioEncontrado);
                 ControladorJuego4linea contDamas = (ControladorJuego4linea) FacesUtils.getManagedBean("controladorJuego4linea");
                 contDamas.setUsuario(usuarioEncontrado);
-                return "ingresar";
-                //return "prueba";
+                if(usuarioEncontrado.getRol().getCodigo()==1){
+                    return "ingresar";
+                }
+                else
+                {
+                    return "ingresarJugador";
+                }
+                
             }
             JsfUtil.addErrorMessage("Contraseña errada");
         } else {

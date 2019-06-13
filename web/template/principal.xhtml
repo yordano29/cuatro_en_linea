@@ -78,6 +78,7 @@
                     <p:commandButton value="Crear"  />
                     <p:commandButton value="Partida" ajax="false" action="partida"  />
                     <p:commandButton value="Tablero" ajax="false" action="tablero" />
+                    <p:commandButton value="Habilitar Juego" update="@all" ajax="false" action="#{tablero.activarJuego()}"/>
                     </h:panelGrid>
                 </h:form>
                     
@@ -87,6 +88,7 @@
                 <p:outputLabel value="#{controladorJuego4linea.usuario.nombre}" />
             </div>
         </div>
+        
     </h:body>
 
 </html>

@@ -14,6 +14,7 @@ import com.juego4enlinea.modelo.grafo.Grafo;
 import com.juego4enlinea.modelo.grafo.Vertice;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -43,6 +44,9 @@ public class Tablero implements Serializable {
     private byte numeroJugadores = 4;
     private Jugador jugadorSeleccionado;
     private int tiempoTurno = 0;
+    private boolean  estadoJuego=false;
+    private Date fechaSistema;
+    
 
     private List<Jugador> jugadores = new ArrayList<Jugador>();
 
@@ -188,6 +192,28 @@ public class Tablero implements Serializable {
         this.jugadorSeleccionado = jugadorSeleccionado;
     }
 
+    public boolean isEstadoJuego() {
+        return estadoJuego;
+    }
+
+    public void setEstadoJuego(boolean estadoJuego) {
+        this.estadoJuego = estadoJuego;
+    }
+
+    public Date getFechaSistema() {
+        return new Date();
+    }
+
+    public void setFechaSistema(Date fechaSistema) {
+        this.fechaSistema = fechaSistema;
+    }
+    
+    
+    
+    
+    
+    
+
     public void simularJugada(int num, Usuario usuario) {
         JsfUtil.addSuccessMessage("Jugó " + usuario.getNombre());
 
@@ -217,6 +243,12 @@ public class Tablero implements Serializable {
         jugadorSeleccionado = new Jugador();
         jugadorSeleccionado.setUsuario(usuario);
         jugadorSeleccionado.setTiempo(tiempoTurno);
+    }
+    
+    public void activarJuego()
+    {
+        estadoJuego=true;
+        JsfUtil.addSuccessMessage("Se ha habilitado el juego");
     }
 
 }

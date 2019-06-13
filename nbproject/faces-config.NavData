@@ -4,13 +4,15 @@
     <Scope Scope="Project">
         <Node id="template/tablero.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="index.xhtml" x="1150" y="150" zoom="true"/>
-        <Node id="usuario/List.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="template/jugador.xhtml" x="150" y="900" zoom="true"/>
         <Node id="welcomePrimefaces.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="usuario/List.xhtml" x="150" y="600" zoom="true"/>
         <Node id="partida/List.xhtml" x="400" y="150" zoom="true"/>
         <Node id="usuario/View.xhtml" x="650" y="150" zoom="true"/>
         <Node id="rol/Create.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="template/partida.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="template/seleccionaJugador.xhtml" x="650" y="600" zoom="true"/>
         <Node id="usuario/Edit.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="template/partida.xhtml" x="900" y="450" zoom="true"/>
         <Node id="usuario/Create.xhtml" x="900" y="150" zoom="true"/>
         <Node id="rol/List.xhtml" x="150" y="750" zoom="true"/>
         <Node id="partida/Edit.xhtml" x="650" y="300" zoom="true"/>

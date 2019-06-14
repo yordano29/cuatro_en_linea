@@ -59,6 +59,18 @@
                 background-color: blue;
                 color: #cccccc;
             }
+            
+            .ui-diagram-element-ficha-rosado {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: fuchsia;
+                color: #cccccc;
+            }
 
             .ui-diagram-element:hover {
                 background-color: #20282b;
@@ -73,12 +85,12 @@
         </div>
         <div>
             <div id="left" class="left">
-                <h:form>
-                    <h:panelGrid>
-                    <p:commandButton value="Crear"  />
-                    <p:commandButton value="Partida" ajax="false" action="partida"  />
-                    <p:commandButton value="Tablero" ajax="false" action="tablero" />
-                    <p:commandButton value="Habilitar Juego" update="@all" ajax="false" action="#{tablero.activarJuego()}"/>
+                <h:form id="tbBotones">
+                    <h:panelGrid rendered="#{controladorJuego4linea.ocultarPanelJugador(controladorJuego4linea.usuario)}" >
+                        <p:commandButton value="Crear"  />
+                        <p:commandButton value="Partida" ajax="false" action="partida"  />
+                        <p:commandButton value="Tablero" ajax="false" action="tablero" />
+                        <p:commandButton value="Habilitar Juego" update="@all" ajax="false" action="#{tablero.activarJuego()}"/>
                     </h:panelGrid>
                 </h:form>
                     

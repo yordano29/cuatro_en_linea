@@ -49,5 +49,12 @@ public class ControladorJuego4linea implements Serializable {
         
     }
     
+    public boolean ocultarPanelJugador(Usuario var){
+        if(var.getRol().getCodigo() == 1){
+            return true;
+        }
+        return false;
+    }
+    
     
 }

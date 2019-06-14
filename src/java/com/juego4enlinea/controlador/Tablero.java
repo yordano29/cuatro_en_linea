@@ -47,6 +47,7 @@ public class Tablero implements Serializable {
     private boolean  estadoJuego=false;
     private Date fechaSistema;
     
+    
 
     private List<Jugador> jugadores = new ArrayList<Jugador>();
 
@@ -58,15 +59,12 @@ public class Tablero implements Serializable {
 
     @PostConstruct
     public void pintarTablero() {
-
         //llenarVertices();
         model = new DefaultDiagramModel();
         model.setMaxConnections(-1);
         model.setConnectionsDetachable(false);
-
         int iniX = 2;
         for (int cont = 0; cont < 6; cont++) {
-
             int x = iniX;
             int y = 5;
             String color = "Negra";
@@ -207,11 +205,7 @@ public class Tablero implements Serializable {
     public void setFechaSistema(Date fechaSistema) {
         this.fechaSistema = fechaSistema;
     }
-    
-    
-    
-    
-    
+
     
 
     public void simularJugada(int num, Usuario usuario) {
@@ -225,7 +219,7 @@ public class Tablero implements Serializable {
                 }
             }
             Element elem1 = model.getElements().get(aux - 1);
-            elem1.setStyleClass("ui-diagram-element-ficha");
+            elem1.setStyleClass("ui-diagram-element-ficha-rosado");
             tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
         } else {
             //System.out.println("columna "+ num + " llena" +", haga otra jugada");
@@ -250,5 +244,7 @@ public class Tablero implements Serializable {
         estadoJuego=true;
         JsfUtil.addSuccessMessage("Se ha habilitado el juego");
     }
-
+    
+   
+    
 }

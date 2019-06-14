@@ -35,6 +35,14 @@
     </navigation-rule>
     
     <navigation-rule>
+        <from-view-id>/template/principal.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>crearUsuario</from-outcome>
+            <to-view-id>/template/crearUsuario.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>ingresarJugador</from-outcome>

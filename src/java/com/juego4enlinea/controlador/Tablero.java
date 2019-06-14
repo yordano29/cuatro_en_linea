@@ -47,8 +47,6 @@ public class Tablero implements Serializable {
     private boolean  estadoJuego=false;
     private Date fechaSistema;
     
-    
-
     private List<Jugador> jugadores = new ArrayList<Jugador>();
 
     /**
@@ -272,4 +270,29 @@ public class Tablero implements Serializable {
         }
 
     }*/
+    
+    public boolean estaColor(String colorAgregado)
+    {
+        if(!jugadores.isEmpty())
+        {
+            for (Jugador jug : jugadores)
+            {
+                if(jug.getColor().compareTo(colorAgregado)==0)
+                {
+                    
+                    
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+                 
+    }
+    
+    
+    
+    
+    
+    
 }

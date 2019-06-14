@@ -17,12 +17,15 @@
                         <h:outputText value="#{bundle.ViewUsuarioLabel_nombre}"/>
                         <h:outputText value="#{tablero.jugadorSeleccionado.usuario.nombre}" title="#{bundle.ViewUsuarioTitle_nombre}"/>
                         <h:outputText value="Color"/>
-                        <p:selectOneMenu value="#{tablero.jugadorSeleccionado.color}">
-                            <f:selectItem itemValue="Azul" itemLabel="Azul"/>
-                            <f:selectItem itemValue="Rojo" itemLabel="Rojo"/>
+                        
+                        <p:selectOneMenu value="#{tablero.jugadorSeleccionado.color}" >
+                            <f:selectItem itemValue="Amarillo" itemLabel="Amarillo" itemDisabled="#{tablero.estaColor(Amarillo)}" />
+                            <f:selectItem itemValue="Azul" itemLabel="Azul" itemDisabled="#{tablero.estaColor(Azul)}" />
+                            <f:selectItem itemValue="Rojo" itemLabel="Rojo" itemDisabled="#{tablero.estaColor(Rojo)}" />
+                            <f:selectItem itemValue="Verde" itemLabel="Verde" itemDisabled="#{tablero.estaColor(Verde)}" />
+                            
                         </p:selectOneMenu>
-
-
+                        
                     </p:panelGrid>
                     <p:commandButton value="Seleccionar" action="#{tablero.adicionarJugador()}" ajax="false" oncomplete="JugadorViewDialog.hide()" update="@all"/>
                     <p:commandButton value="#{bundle.Close}" onclick="JugadorViewDialog.hide()"/>

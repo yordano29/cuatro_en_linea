@@ -60,7 +60,7 @@
                 color: #cccccc;
             }
             
-            .ui-diagram-element-ficha-rosado {   
+            .ui-diagram-element-ficha-Amarillo {   
                 width:2em; 
                 height:2em;
                 line-height:1em;
@@ -68,7 +68,19 @@
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
                 border-radius: 2em;
                 border: 1px solid #404a4e;
-                background-color: fuchsia;
+                background-color: yellow;
+                color: #cccccc;
+            }
+            
+            .ui-diagram-element-ficha-Verde {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: green;
                 color: #cccccc;
             }
 
@@ -87,7 +99,7 @@
             <div id="left" class="left">
                 <h:form id="tbBotones">
                     <h:panelGrid rendered="#{controladorJuego4linea.ocultarPanelJugador(controladorJuego4linea.usuario)}" >
-                        <p:commandButton value="Crear"  />
+                        <p:commandButton value="Crear"  ajax="false" action="crearUsuario" />
                         <p:commandButton value="Partida" ajax="false" action="partida"  />
                         <p:commandButton value="Tablero" ajax="false" action="tablero" />
                         <p:commandButton value="Habilitar Juego" update="@all" ajax="false" action="#{tablero.activarJuego()}"/>
@@ -102,5 +114,5 @@
         </div>
         
     </h:body>
-
+    
 </html>

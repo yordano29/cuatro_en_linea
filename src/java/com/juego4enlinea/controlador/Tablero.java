@@ -219,8 +219,15 @@ public class Tablero implements Serializable {
                 }
             }
             Element elem1 = model.getElements().get(aux - 1);
-            elem1.setStyleClass("ui-diagram-element-ficha-rosado");
-            tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
+            for (Jugador jugadores : jugadores) {
+                if(usuario.getNombre().compareTo(jugadores.getUsuario().getNombre())==0){
+                    elem1.setStyleClass("ui-diagram-element-ficha-"+ jugadores.getColor());
+                    tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
+                }
+            }
+            
+            //elem1.setStyleClass("ui-diagram-element-ficha-"+ jugadores.get(0).getColor());
+            //tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
         } else {
             //System.out.println("columna "+ num + " llena" +", haga otra jugada");
             JsfUtil.addErrorMessage("columna " + num + " llena" + ", haga otra jugada");
@@ -246,5 +253,23 @@ public class Tablero implements Serializable {
     }
     
    
-    
+    /*public void simularJugada(int num, Usuario usuario) {
+        JsfUtil.addSuccessMessage("Jugó " + usuario.getNombre());
+
+        if (tablero.getVertices().get(num - 1).getFicha().getColor().compareTo("Negra") == 0) {
+            int aux = 0;
+            for (int i = num; i <= total; i = i + ancho) {
+                if (tablero.getVertices().get(i - 1).getFicha().getColor().compareTo("Negra") == 0) {
+                    aux = i;
+                }
+            }
+            Element elem1 = model.getElements().get(aux - 1);
+            elem1.setStyleClass("ui-diagram-element-ficha-rosado");
+            tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
+        } else {
+            //System.out.println("columna "+ num + " llena" +", haga otra jugada");
+            JsfUtil.addErrorMessage("columna " + num + " llena" + ", haga otra jugada");
+        }
+
+    }*/
 }

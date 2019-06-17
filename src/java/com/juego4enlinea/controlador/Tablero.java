@@ -286,7 +286,14 @@ public class Tablero implements Serializable {
                 Element elem1 = model.getElements().get(reto-1);
                 tablero.getVertices().get(reto -1).getFicha().setColor("Rosado");
                 elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
-                pintandoAbajo(reto);
+                if(tablero.getVertices().get((reto -1) - 8).getFicha().getOrientacion() == 1){
+                    pintandoArriba(ancho);
+                }
+                else
+                {
+                    pintandoAbajo(reto);
+                }
+                
             }
              
             

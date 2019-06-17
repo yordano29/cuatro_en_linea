@@ -7,21 +7,56 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:form >
-                <p:outputLabel value="#{bundle.CreateUsuarioLabel_correo}" for="correo" />
-                <p:inputText id="correo" value="#{usuarioController.selected.correo}" title="#{bundle.CreateUsuarioTitle_correo}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_correo}"/>
-                
-                <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasena}" for="contrasena" />
-                <p:inputText id="contrasena" value="#{usuarioController.selected.contrasena}" title="#{bundle.CreateUsuarioTitle_contrasena}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasena}"/>
-                
-                <p:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
-                <p:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" />
-                
-                
-                
-        </h:form>
-        
-        
+        <h:form id="UsuarioListForm">
+                <p:panel header="#{bundle.ListUsuarioTitle}">
+                    <p:dataTable id="datalist" value="#{usuarioController.items}" var="item"
+                                 selectionMode="single" selection="#{usuarioController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.correo}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsuarioTitle_correo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.correo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsuarioTitle_contrasena}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contrasena}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsuarioTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsuarioTitle_rol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rol}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="PF('UsuarioCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsuarioEditForm" oncomplete="PF('UsuarioEditDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usuarioController.destroy}" update=":growl,datalist" disabled="#{empty usuarioController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="../usuario/Create.xhtml"/>
+            <ui:include src="../usuario/Edit.xhtml"/>
+            <ui:include src="../usuario/View.xhtml"/>
         
     </ui:define>
 

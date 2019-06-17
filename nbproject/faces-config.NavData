@@ -11,17 +11,17 @@
         <Node id="usuario/View.xhtml" x="650" y="150" zoom="true"/>
         <Node id="rol/Create.xhtml" x="900" y="300" zoom="true"/>
         <Node id="template/seleccionaJugador.xhtml" x="650" y="600" zoom="true"/>
-        <Node id="usuario/Edit.xhtml" x="650" y="450" zoom="true"/>
         <Node id="template/partida.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="usuario/Edit.xhtml" x="650" y="450" zoom="true"/>
         <Node id="usuario/Create.xhtml" x="900" y="150" zoom="true"/>
         <Node id="rol/List.xhtml" x="150" y="750" zoom="true"/>
         <Node id="partida/Edit.xhtml" x="650" y="300" zoom="true"/>
         <Node id="template.xhtml" x="400" y="300" zoom="true"/>
-        <Node id="template/principal.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="rol/View.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="template/principal.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="rol/Edit.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="partida/Create.xhtml" x="150" y="450" zoom="true"/>
         <Node id="partida/View.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="partida/Create.xhtml" x="150" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

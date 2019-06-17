@@ -83,6 +83,18 @@
                 background-color: green;
                 color: #cccccc;
             }
+            
+            .ui-diagram-element-ficha-Rosado {   
+                width:2em; 
+                height:2em;
+                line-height:1em;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                border-radius: 2em;
+                border: 1px solid #404a4e;
+                background-color: pink;
+                color: #cccccc;
+            }
 
             .ui-diagram-element:hover {
                 background-color: #20282b;
@@ -104,6 +116,13 @@
                         <p:commandButton value="Tablero" ajax="false" action="tablero" />
                         <p:commandButton value="Habilitar Juego" update="@all" ajax="false" action="#{tablero.activarJuego()}"/>
                     </h:panelGrid>
+                </h:form>
+                <h:form>
+                    <p:inputNumber minValue="1" maxValue="252" value="#{tablero.reto}" />
+                    <p:commandButton value="Arriba" action="#{tablero.pintarArriba()}"/> 
+                    <p:commandButton value="Abajo" action="#{tablero.pintarAbajo()}"/> 
+                    <p:commandButton value="Cambio" action="#{tablero.cambioTablero()}"/> 
+                    
                 </h:form>
                     
             </div>

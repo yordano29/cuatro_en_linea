@@ -46,6 +46,7 @@ public class Tablero implements Serializable {
     private int tiempoTurno = 0;
     private boolean  estadoJuego=false;
     private Date fechaSistema;
+    private int reto;
     
     private List<Jugador> jugadores = new ArrayList<Jugador>();
 
@@ -204,6 +205,16 @@ public class Tablero implements Serializable {
         this.fechaSistema = fechaSistema;
     }
 
+    public int getReto() {
+        return reto;
+    }
+
+    public void setReto(int reto) {
+        this.reto = reto;
+    }
+    
+    
+
     
 
     public void simularJugada(int num, Usuario usuario) {
@@ -223,11 +234,7 @@ public class Tablero implements Serializable {
                     tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
                 }
             }
-            
-            //elem1.setStyleClass("ui-diagram-element-ficha-"+ jugadores.get(0).getColor());
-            //tablero.getVertices().get(aux - 1).getFicha().setColor("Azul");
         } else {
-            //System.out.println("columna "+ num + " llena" +", haga otra jugada");
             JsfUtil.addErrorMessage("columna " + num + " llena" + ", haga otra jugada");
         }
 
@@ -271,27 +278,81 @@ public class Tablero implements Serializable {
 
     }*/
     
-    public boolean estaColor(String colorAgregado)
+    
+    int valor = reto;
+    public void pintarAbajo()
     {
-        if(!jugadores.isEmpty())
+        int cont = reto;
+        for (int i = 0; i <= 84; i++) 
         {
-            for (Jugador jug : jugadores)
+            if(tablero.getVertices().get(i).getCodigo()==reto )            
             {
-                if(jug.getColor().compareTo(colorAgregado)==0)
+                for (int j = reto; j <= 84; j= j+8) 
                 {
-                    
-                    
-                    return true;
+                    if(j % ancho != 0)
+                    {
+                        Element elem1 = model.getElements().get(j-1);
+                        tablero.getVertices().get(j).getFicha().setColor("Rosado");
+                        elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
+                    }
+                    else
+                    {
+                        Element elem1 = model.getElements().get(j-1);
+                        tablero.getVertices().get(j).getFicha().setColor("Rosado");
+                        elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
+                    }
                 }
-                
             }
         }
-        return false;
-                 
+        
     }
     
+    public void pintarArriba()
+    {
+        int cont = reto;
+        for (int i = 0; i <= 84; i++) 
+        {
+            if(tablero.getVertices().get(i).getCodigo()==reto)            
+            {
+                for (int j = reto; j <= 84; j= j-6) 
+                {
+                    if(j % ancho != 0)
+                    {
+                        Element elem1 = model.getElements().get(j-1);
+                        tablero.getVertices().get(j).getFicha().setColor("Rosado");
+                        elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
+                    }
+                    else
+                    {
+                        Element elem1 = model.getElements().get(j-1);
+                        tablero.getVertices().get(j).getFicha().setColor("Rosado");
+                        elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
+                    }
+                }
+            }
+        }
+        
+    }
     
-    
+    public void cambioTablero ()
+    {
+        int cont = reto;
+        if(reto % ancho == 0)
+        {
+            Element elem1 = model.getElements().get(reto-1);
+            tablero.getVertices().get(reto).getFicha().setColor("Rosado");
+            elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
+        
+        if(tablero.getVertices().get(reto + 36).getFicha().getTablero().compareTo("T6") !=0)
+        {
+            Element elem2 = model.getElements().get((reto-1)+36);
+            tablero.getVertices().get((reto-1)+36).getFicha().setColor("Rosado");
+            elem2.setStyleClass("ui-diagram-element-ficha-Rosado");
+        }
+        }
+        
+        
+    }
     
     
     

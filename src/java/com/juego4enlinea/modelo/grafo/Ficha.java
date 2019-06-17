@@ -14,14 +14,24 @@ import java.io.Serializable;
 public class Ficha implements Serializable{
  
     private String color;
-    private String tablero;
-   
+    private int tablero;
+    private int nivel;
+    private int orientacion;
 
-    public Ficha(String color, String tablero) {
+    public Ficha(String color, int tablero, int nivel) {
         this.color = color;
-        this.tablero= tablero;
+        this.tablero = tablero;
+        this.nivel = nivel;
     }
 
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+  
     public String getColor() {
         return color;
     }
@@ -30,14 +40,25 @@ public class Ficha implements Serializable{
         this.color = color;
     }
 
-    public String getTablero() {
+    public int getTablero() {
         return tablero;
     }
 
-    public void setTablero(String tablero) {
+    public void setTablero(int tablero) {
         this.tablero = tablero;
     }
 
+    public int getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(int orientacion) {
+        this.orientacion = orientacion;
+    }
+    
+    
+
+   
     
     
 }

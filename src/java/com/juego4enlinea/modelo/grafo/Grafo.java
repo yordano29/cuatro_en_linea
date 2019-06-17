@@ -52,12 +52,12 @@ public class Grafo implements Serializable{
         
     }
     
-    public List<Vertice> obtenerVerticesxTablero(String tablero)
+    public List<Vertice> obtenerVerticesxTablero(int tablero)
     {
         List<Vertice> lista= new ArrayList<>();
         for(Vertice vert: vertices)
         {
-            if(vert.getFicha().getTablero().compareTo(tablero)==0)
+            if(vert.getFicha().getTablero() == (tablero))
             {
                 lista.add(vert);
             }

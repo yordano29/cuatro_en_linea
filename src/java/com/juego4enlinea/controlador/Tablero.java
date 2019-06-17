@@ -127,6 +127,25 @@ public class Tablero implements Serializable {
             }
         }
     }
+    
+    public boolean estaColor(String colorAgregado)
+    {
+        if(!jugadores.isEmpty())
+        {
+            for (Jugador jug : jugadores)
+            {
+                if(jug.getColor().compareTo(colorAgregado)==0)
+                {
+                    
+                    
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+                 
+}
 
     public int getTiempoTurno() {
         return tiempoTurno;
@@ -286,8 +305,8 @@ public class Tablero implements Serializable {
                 Element elem1 = model.getElements().get(reto-1);
                 tablero.getVertices().get(reto -1).getFicha().setColor("Rosado");
                 elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
-                if(tablero.getVertices().get((reto -1) - 8).getFicha().getOrientacion() == 1){
-                    pintandoArriba(ancho);
+                if(tablero.getVertices().get((reto -1) - 36).getFicha().getOrientacion() == 1){
+                    pintandoArriba(reto);
                 }
                 else
                 {
@@ -349,7 +368,7 @@ public class Tablero implements Serializable {
                 Element elem1 = model.getElements().get(num-1);
                 tablero.getVertices().get(num).getFicha().setColor("Rosado");
                 elem1.setStyleClass("ui-diagram-element-ficha-Rosado");
-                reto = reto - 8;
+                reto = reto + 8;
                 tablero.getVertices().get(reto -1).getFicha().setOrientacion(1);
             }
             else
